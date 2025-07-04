@@ -71,4 +71,69 @@ public class HelloWorldController
         return hws.postEmpMethod();
     }
 
+    @PostMapping("/employee2")
+    public List<Employee> postEmpMethod2()
+    {
+        Employee em = new Employee(5,"Puvi","Business");
+        return hws.postEmpMethod2(em);
+    }
+
+//    --------------------------------------USING REQUEST-BODY ------------------------------------------
+
+    @GetMapping("/employee")
+    public List<Employee> getAllEmployees() {
+        return hws.getAllEmployees();
+    }
+
+    // POST new employee (using @RequestBody)
+    @PostMapping("/employee")
+    public List<Employee> addNewEmployee(@RequestBody Employee newEmployee) {
+        return hws.addEmployee(newEmployee);
+    }
+
+    //POST new employee hardcoded
+    @PostMapping("/employee/hardcoded")
+    public List<Employee> addHardcodedEmployee() {
+        Employee hardcodedEmployee = new Employee(30, "Prince", "System");
+        return hws.addEmployee(hardcodedEmployee);
+    }
+
+    // PUT update employee (using @RequestBody + ID)
+    @PutMapping("/employee/{id}")
+    public List<Employee> modifyEmployee(@PathVariable int id, @RequestBody Employee updatedEmployee) {
+        return hws.updateEmployee(id, updatedEmployee);
+    }
+
+    // DELETE employee by ID
+    @DeleteMapping("/employee/{id}")
+    public List<Employee> removeEmployee(@PathVariable int id) {
+        return hws.deleteEmployee(id);
+    }
+
+//    ----------------------------ANOTHER METHOD-----------------------------------------
+
+    @GetMapping("/{empId}")
+    public Employee getEmployee(@PathVariable int empId)
+    {
+        return hws.getEmployeeById(empId);
+    }
+
+    @DeleteMapping("/{empId}")
+    public Employee deleteEmployee(@PathVariable int empId)
+    {
+        return hws.deleteEmployeeById(empId);
+    }
+
+    @PutMapping("/{empId}")
+    public Employee updateEmployee(@PathVariable int empId , @RequestBody Employee updatedEmployee)
+    {
+      return hws.updateEmployeeById(empId, updatedEmployee);
+    }
+
+    @PostMapping("/employee")
+    public Employee addEmployee(@RequestBody Employee newEmp) {
+        return hws.addNewEmployee(newEmp);
+    }
+
+
 }
