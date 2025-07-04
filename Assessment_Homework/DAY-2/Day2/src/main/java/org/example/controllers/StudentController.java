@@ -43,4 +43,15 @@ public class StudentController {
     public List<StudentModel> postStudentMethod() {
         return hws.postStudentMethod();
     }
+
+//    ------------------------USING REQUEST-BODY-----------------------------
+
+    @GetMapping("/student")
+    public List<StudentModel> getAllStudents()
+    {
+        return hws.getAllStudents();
+    }
+
+
+
 }

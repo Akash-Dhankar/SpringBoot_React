@@ -40,4 +40,20 @@ public class StudentService {
     public List<StudentModel> postStudentMethod() {
         return students;
     }
+
+//    -------------------------USING REQUEST-BODY-------------------------
+
+    private List<StudentModel> stud = new ArrayList<>(Arrays.asList(
+            new StudentModel(10,"Virat","Cover-Drive"),
+            new StudentModel(20,"Balaji","TechIT")
+    ));
+
+    //GET all students
+    public List<StudentModel> getAllStudents()
+    {
+        return stud;
+    }
+
+
+
 }
