@@ -52,6 +52,9 @@ public class StudentController {
         return hws.getAllStudents();
     }
 
-
-
+    @PostMapping("/student")
+    public List<StudentModel> postAllStudents(@RequestBody StudentModel newStudent)
+    {
+        return hws.postAllStudents(newStudent);
+    }
 }

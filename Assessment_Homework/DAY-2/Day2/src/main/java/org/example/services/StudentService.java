@@ -54,6 +54,10 @@ public class StudentService {
         return stud;
     }
 
-
-
+    //POST Students
+    public List<StudentModel> postAllStudents(StudentModel newStudent)
+    {
+        stud.add(newStudent);
+        return stud;
+    }
 }
