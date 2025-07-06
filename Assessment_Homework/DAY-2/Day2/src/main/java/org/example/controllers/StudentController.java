@@ -57,4 +57,16 @@ public class StudentController {
     {
         return hws.postAllStudents(newStudent);
     }
+
+    @PutMapping("/student/{id}")
+    public List<StudentModel> putAllStudents(@PathVariable int id , @RequestBody StudentModel updatedStudent)
+    {
+        return hws.putAllStudents(id,updatedStudent);
+    }
+
+    @DeleteMapping("/student{id}")
+    public List<StudentModel> deleteAllStudents(@PathVariable int id)
+    {
+        return hws.deleteAllStudents(id);
+    }
 }

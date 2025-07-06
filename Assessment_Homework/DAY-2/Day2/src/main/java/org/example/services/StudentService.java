@@ -60,4 +60,26 @@ public class StudentService {
         stud.add(newStudent);
         return stud;
     }
+
+    //PUT STUDENT(UPDATE)
+    public List<StudentModel> putAllStudents(int id , StudentModel updatedStudent)
+    {
+        for(StudentModel s : stud)
+        {
+            if(s.getStudentId() == id)
+            {
+                s.setStudentName(updatedStudent.getStudentName());
+                s.setStudentCourse(updatedStudent.getStudentCourse());
+                break;
+            }
+        }
+        return stud;
+    }
+
+    //DELETE STUDENTS
+    public List<StudentModel> deleteAllStudents(int id)
+    {
+        stud.removeIf(s -> s.getStudentId() == id);
+        return stud;
+    }
 }
