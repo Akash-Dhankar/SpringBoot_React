@@ -150,13 +150,13 @@ public class HelloWorldController
    @PutMapping("/employeeFromDB/{empId}")
     public Employee putEmployeeToDB(@PathVariable int empId , @RequestBody Employee updatedEmployee)
    {
-       return hws.updateEmployeeById(empId, updatedEmployee);
+       return hws.updateEmployeeToDBById(empId, updatedEmployee);
    }
 
    @DeleteMapping("/employeeFromDB/{empId}")
     public Employee deleteEmployeeFromDB(@PathVariable int empId)
    {
-       return hws.deleteEmployeeById(empId);
+       return hws.deleteEmployeeFromDBById(empId);
    }
 
 

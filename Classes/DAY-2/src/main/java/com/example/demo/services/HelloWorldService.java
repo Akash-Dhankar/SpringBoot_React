@@ -214,17 +214,18 @@ public class HelloWorldService
         return "Employee added successfully";
     }
 
-    public Employee putEmployeeToDB(int empId,Employee updatedEmployee)
+    public Employee updateEmployeeToDBById(int empId , Employee updatedEmployee)
     {
         empRepo.save(updatedEmployee);
         System.out.println("Employee detail updated successfully");
         return updatedEmployee;
     }
 
-    public void deleteEmployeeFromDB(int empId)
+    public Employee deleteEmployeeFromDBById(int empId)
     {
         empRepo.deleteById(empId);
         System.out.println("Employee detail deleted successfully");
+        return null;
     }
 }
 

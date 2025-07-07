@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="261827d7-3323-4045-bf76-5a93141fa84c" name="Changes" comment="a little more update , not homework just practice">
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/EmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../todoapp/src/main/java/com/example/todoapp/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../todoapp/src/main/java/com/example/todoapp/controller/TaskController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../todoapp/src/main/java/com/example/todoapp/model/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../todoapp/src/main/java/com/example/todoapp/service/TaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/StudentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/StudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/StudentModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/StudentModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/HelloWorldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/HelloWorldController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/HelloWorldService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/HelloWorldService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

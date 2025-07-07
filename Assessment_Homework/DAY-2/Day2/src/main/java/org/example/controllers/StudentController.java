@@ -69,4 +69,30 @@ public class StudentController {
     {
         return hws.deleteAllStudents(id);
     }
+
+    //---------------------CONNECTING WITH DATABASE------------------------------
+
+    @GetMapping("/studentFromDB/{studentId}")
+    public StudentModel getStudentFromDB(@PathVariable int studentId)
+    {
+        return hws.getStudentFromDBById(studentId);
+    }
+
+    @PostMapping("/studentFromDB")
+    public String postStudentToDB(@RequestBody StudentModel newStudent)
+    {
+        return hws.postStudentToDB(newStudent);
+    }
+
+    @PutMapping("/studentFromDB/{studentId}")
+    public StudentModel putStudentToDB(@PathVariable int studentId , @RequestBody StudentModel updatedStudent)
+    {
+        return hws.putStudentToDBById(studentId,updatedStudent);
+    }
+
+    @DeleteMapping("/studentFromDB/{studentId}")
+    public StudentModel deleteStudentFromDB(@PathVariable int studentId)
+    {
+        return hws.deleteStudentFromDBById(studentId);
+    }
 }

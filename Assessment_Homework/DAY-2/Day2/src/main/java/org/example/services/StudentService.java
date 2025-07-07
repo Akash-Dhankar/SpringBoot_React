@@ -1,5 +1,7 @@
 package org.example.services;
 import org.example.models.StudentModel;
+import org.example.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -82,4 +84,40 @@ public class StudentService {
         stud.removeIf(s -> s.getStudentId() == id);
         return stud;
     }
+
+
+    //----------------------------------CONNECTING WITH DATABASE---------------------------------------
+
+    @Autowired
+    StudentRepository studRepo;
+    public List<StudentModel> getStudentFromDB()
+    {
+        return studRepo.findAll();
+    }
+
+    public StudentModel getStudentFromDBById(int studentId)
+    {
+        return studRepo.findById(studentId).orElse(new StudentModel());
+    }
+
+    public String postStudentToDB(StudentModel student)
+    {
+        studRepo.save(student);
+        return "Student added successfully";
+    }
+
+    public StudentModel putStudentToDBById(int studentId , StudentModel updatedStudent)
+    {
+        studRepo.save(updatedStudent);
+        System.out.println("Student detail updated successfully");
+        return updatedStudent;
+    }
+
+    public StudentModel deleteStudentFromDBById(int studentId)
+    {
+        studRepo.deleteById(studentId);
+        System.out.println("Student detail deleted successfully");
+        return null;
+    }
+
 }
