@@ -65,7 +65,7 @@ public class HelloWorldController
         return hws.getEmpMethod();
     }
 
-    @PostMapping("/employee")
+    @PostMapping("/employee1")
     public List<Employee> postEmpMethod()
     {
         return hws.postEmpMethod();
@@ -78,39 +78,39 @@ public class HelloWorldController
         return hws.postEmpMethod2(em);
     }
 
-//    --------------------------------------USING REQUEST-BODY ------------------------------------------
+//  ------------------------------------------USING REQUEST-BODY ------------------------------------------
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
         return hws.getAllEmployees();
     }
 
     // POST new employee (using @RequestBody)
-    @PostMapping("/employee")
+    @PostMapping("/employees")
     public List<Employee> addNewEmployee(@RequestBody Employee newEmployee) {
         return hws.addEmployee(newEmployee);
     }
 
     //POST new employee hardcoded
-    @PostMapping("/employee/hardcoded")
+    @PostMapping("/employees/hardcoded")
     public List<Employee> addHardcodedEmployee() {
         Employee hardcodedEmployee = new Employee(30, "Prince", "System");
         return hws.addEmployee(hardcodedEmployee);
     }
 
     // PUT update employee (using @RequestBody + ID)
-    @PutMapping("/employee/{id}")
+    @PutMapping("/employees/{id}")
     public List<Employee> modifyEmployee(@PathVariable int id, @RequestBody Employee updatedEmployee) {
         return hws.updateEmployee(id, updatedEmployee);
     }
 
     // DELETE employee by ID
-    @DeleteMapping("/employee/{id}")
+    @DeleteMapping("/employees/{id}")
     public List<Employee> removeEmployee(@PathVariable int id) {
         return hws.deleteEmployee(id);
     }
 
-//    ----------------------------ANOTHER METHOD-----------------------------------------
+//  -----------------------------------------ANOTHER METHOD--------------------------------------------
 
     @GetMapping("/{empId}")
     public Employee getEmployee(@PathVariable int empId)
@@ -134,6 +134,31 @@ public class HelloWorldController
     public Employee addEmployee(@RequestBody Employee newEmp) {
         return hws.addNewEmployee(newEmp);
     }
+
+//  ------------------------------------------CONNECTING WITH DATABASE-----------------------------------------
+
+    @GetMapping("/employeeFromDB/{empId}")
+    public Employee getEmployeeFromDB(@PathVariable int empId) {
+        return hws.getEmployeeFromDBById(empId);
+    }
+
+    @PostMapping("/employeeFromDB")
+    public String postEmployeeToDB(@RequestBody Employee newEmp)
+   {
+       return hws.postEmployeeToDB(newEmp);
+   }
+   @PutMapping("/employeeFromDB/{empId}")
+    public Employee putEmployeeToDB(@PathVariable int empId , @RequestBody Employee updatedEmployee)
+   {
+       return hws.updateEmployeeById(empId, updatedEmployee);
+   }
+
+   @DeleteMapping("/employeeFromDB/{empId}")
+    public Employee deleteEmployeeFromDB(@PathVariable int empId)
+   {
+       return hws.deleteEmployeeById(empId);
+   }
+
 
 
 }

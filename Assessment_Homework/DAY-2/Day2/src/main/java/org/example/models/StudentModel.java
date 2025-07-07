@@ -10,5 +10,4 @@ public class StudentModel
     private int studentId;
     private String studentName;
     private String studentCourse;
-
 }

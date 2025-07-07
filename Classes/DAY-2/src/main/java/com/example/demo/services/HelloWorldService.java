@@ -1,5 +1,7 @@
 package com.example.demo.services;
 import com.example.demo.models.Employee;
+import com.example.demo.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class HelloWorldService
     ));
 
     // Get all employees
+    @Autowired
     public List<Employee> getAllEmployees() {
         return workers;
     }
@@ -190,6 +193,38 @@ public class HelloWorldService
             System.out.println("Employee with ID " + newEmp.getEmpId() + " already exists.");
             return null; // Or throw an exception, or return a custom message
         }
+    }
+
+    //--------------------------------CONNECTING WITH DATABASE----------------------------------
+
+    @Autowired
+    EmployeeRepository empRepo;
+    public List<Employee> getEmployeeFromDB()
+    {
+        return empRepo.findAll();
+    }
+
+    public Employee getEmployeeFromDBById(int empId){
+        return empRepo.findById(empId).orElse(new Employee());
+    }
+
+    public String postEmployeeToDB(Employee employee)
+    {
+        empRepo.save(employee);
+        return "Employee added successfully";
+    }
+
+    public Employee putEmployeeToDB(int empId,Employee updatedEmployee)
+    {
+        empRepo.save(updatedEmployee);
+        System.out.println("Employee detail updated successfully");
+        return updatedEmployee;
+    }
+
+    public void deleteEmployeeFromDB(int empId)
+    {
+        empRepo.deleteById(empId);
+        System.out.println("Employee detail deleted successfully");
     }
 }
 
