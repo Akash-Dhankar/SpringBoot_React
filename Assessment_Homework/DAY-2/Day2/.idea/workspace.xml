@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="261827d7-3323-4045-bf76-5a93141fa84c" name="Changes" comment="day 4s student project update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/config/SpringStudentConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/HelloWorldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/HelloWorldController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
