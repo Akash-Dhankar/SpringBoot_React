@@ -160,5 +160,12 @@ public class HelloWorldController
    }
 
 
+   //----------------------------------------SECURITY--------------------------------------
+
+    @GetMapping("/")
+    public String route()
+    {
+        return "Welcome to springboot";
+    }
 
 }
