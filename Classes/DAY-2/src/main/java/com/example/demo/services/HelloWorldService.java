@@ -227,6 +227,69 @@ public class HelloWorldService
         System.out.println("Employee detail deleted successfully");
         return null;
     }
+
+    //------------------------------------------------RBAC---------------------------------------------
+
+    public List<Employee> getAllEmployeeSecurity()
+    {
+        return empRepo.findAll();
+    }
+
+    public Employee getEmployeeFromDBByIdSecurity(int empId){
+        return empRepo.findById(empId).orElse(new Employee());
+    }
+
+    public String postEmployeeToDBSecurity(Employee employee)
+    {
+        empRepo.save(employee);
+        return "Employee added successfully";
+    }
+
+    public Employee updateEmployeeToDBByIdSecurity(int empId , Employee updatedEmployee)
+    {
+        empRepo.save(updatedEmployee);
+        System.out.println("Employee detail updated successfully");
+        return updatedEmployee;
+    }
+
+    public Employee deleteEmployeeFromDBByIdSecurity(int empId)
+    {
+        empRepo.deleteById(empId);
+        System.out.println("Employee detail deleted successfully");
+        return null;
+    }
+
+    // -----------------------------------SECURITY METHOD LEVEL TYPE-----------------------------------
+
+    public List<Employee> getAllEmployeeSecurity2()
+    {
+        return empRepo.findAll();
+    }
+
+    public Employee getEmployeeFromDBByIdSecurity2(int empId){
+        return empRepo.findById(empId).orElse(new Employee());
+    }
+
+    public String postEmployeeToDBSecurity2(Employee employee)
+    {
+        empRepo.save(employee);
+        return "Employee added successfully";
+    }
+
+    public Employee updateEmployeeToDBByIdSecurity2(int empId , Employee updatedEmployee)
+    {
+        empRepo.save(updatedEmployee);
+        System.out.println("Employee detail updated successfully");
+        return updatedEmployee;
+    }
+
+    public Employee deleteEmployeeFromDBByIdSecurity2(int empId)
+    {
+        empRepo.deleteById(empId);
+        System.out.println("Employee detail deleted successfully");
+        return null;
+    }
+
 }
 
 

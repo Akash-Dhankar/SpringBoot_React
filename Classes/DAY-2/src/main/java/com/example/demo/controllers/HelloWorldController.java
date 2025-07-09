@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.models.Employee;
 import com.example.demo.services.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -160,12 +161,87 @@ public class HelloWorldController
    }
 
 
-   //----------------------------------------SECURITY--------------------------------------
+   //----------------------------------------SECURITY REQUESTMATCHER --------------------------------------
 
+    // COMMENTED OUT BECAUSE IT CLASHES WITH METHOD LEVEL CODE BELOW , YOU CAN UNCOMMENT IT
+
+//    @GetMapping("/")
+//    public String route()
+//    {
+//        return "Welcome to springboot";
+//    }
+//
+//    @GetMapping("/employeeRBAC")
+//    public List<Employee> getAllEmployeeSecurity()
+//    {
+//        return hws.getAllEmployeeSecurity();
+//    }
+//
+//    @GetMapping("/employeeRBAC/{empId}")
+//    public Employee getEmployeeFromDBSecurity(@PathVariable int empId) {
+//        return hws.getEmployeeFromDBByIdSecurity(empId);
+//    }
+//
+//
+//
+//    @PostMapping("/employeeRBAC")
+//    public String postEmployeeToDBSecurity(@RequestBody Employee newEmp)
+//    {
+//        return hws.postEmployeeToDBSecurity(newEmp);
+//    }
+//
+//    @PutMapping("/employeeRBAC/{empId}")
+//    public Employee putEmployeeToDBSecurity(@PathVariable int empId , @RequestBody Employee updatedEmployee)
+//    {
+//        return hws.updateEmployeeToDBByIdSecurity(empId, updatedEmployee);
+//    }
+//
+//    @DeleteMapping("/employeeRBAC/{empId}")
+//    public Employee deleteEmployeeFromDBSecurity(@PathVariable int empId)
+//    {
+//        return hws.deleteEmployeeFromDBByIdSecurity(empId);
+//    }
+
+
+    // -----------------------------------SECURITY METHOD LEVEL TYPE-----------------------------------
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/")
     public String route()
     {
         return "Welcome to springboot";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @GetMapping("/employeeRBAC")
+    public List<Employee> getAllEmployeeSecurity2()
+    {
+        return hws.getAllEmployeeSecurity2();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @GetMapping("/employeeRBAC/{empId}")
+    public Employee getEmployeeFromDBSecurity2(@PathVariable int empId) {
+        return hws.getEmployeeFromDBByIdSecurity2(empId);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/employeeRBAC")
+    public String postEmployeeToDBSecurity2(@RequestBody Employee newEmp)
+    {
+        return hws.postEmployeeToDBSecurity2(newEmp);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/employeeRBAC/{empId}")
+    public Employee putEmployeeToDBSecurity2(@PathVariable int empId , @RequestBody Employee updatedEmployee)
+    {
+        return hws.updateEmployeeToDBByIdSecurity2(empId, updatedEmployee);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/employeeRBAC/{empId}")
+    public Employee deleteEmployeeFromDBSecurity2(@PathVariable int empId)
+    {
+        return hws.deleteEmployeeFromDBByIdSecurity2(empId);
+    }
 }
