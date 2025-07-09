@@ -2,6 +2,7 @@ package org.example.controllers;
 import org.example.models.StudentModel;
 import org.example.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -96,7 +97,88 @@ public class StudentController {
         return hws.deleteStudentFromDBById(studentId);
     }
 
-    //------------------------------------------SECURITY-------------------------------------------------
+    //------------------------------------------SECURITY REQUEST LEVEL-------------------------------------------------
+
+//    @GetMapping("/")
+//    public String route()
+//    {
+//        return "Welcome to Student DashBoard made using SpringBoot";
+//    }
+//
+//    @GetMapping("/studentRBAC")
+//    public List<StudentModel> getAllStudentsSecurity()
+//    {
+//        return hws.getAllStudentsSecurity();
+//    }
+//
+//    @GetMapping("/studentRBAC/{studId}")
+//    public StudentModel getStudentFromDBSecurity(@PathVariable int studId)
+//    {
+//        return hws.getStudentFromDBSecurity(studId);
+//    }
+//
+//    @PostMapping("/studentRBAC")
+//    public String postStudentToDBSecurity(@RequestBody StudentModel newStudent)
+//    {
+//        return hws.postStudentToDBSecurity(newStudent);
+//    }
+//
+//    @PutMapping("/studentRBAC/{studId}")
+//    public StudentModel putStudentToDBSecurity(@PathVariable int studId , @RequestBody StudentModel updatedStudent)
+//    {
+//        return hws.putStudentToDBSecurity(studId,updatedStudent);
+//    }
+//
+//    @DeleteMapping("/studentRBAC/{studId}")
+//    public StudentModel deleteStudentFromDBSecurity(@PathVariable int studId)
+//    {
+//        return hws.deleteStudentFromDBSecurity(studId);
+//    }
+
+
+//----------------------------------------------SECURITY METHOD LEVEL -----------------------------------------------------------E
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/")
+    public String route()
+    {
+        return "Welcome to Student DashBoard made using SpringBoot";
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @GetMapping("/studentRBAC")
+    public List<StudentModel> getAllStudentsSecurity2()
+    {
+        return hws.getAllStudentsSecurity2();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @GetMapping("/studentRBAC/{studId}")
+    public StudentModel getStudentFromDBSecurity2(@PathVariable int studId) {
+        return hws.getStudentFromDBSecurity2(studId);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/studentRBAC")
+    public String postStudentToDBSecurity2(@RequestBody StudentModel newStudent)
+    {
+        return hws.postStudentToDBSecurity2(newStudent);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/studentRBAC/{studId}")
+    public StudentModel putStudentToDBSecurity2(@PathVariable int studId , @RequestBody StudentModel updatedStudent)
+    {
+        return hws.putStudentToDBSecurity2(studId, updatedStudent);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/studentRBAC/{studId}")
+    public StudentModel deleteStudentFromDBSecurity2(@PathVariable int studId)
+    {
+        return hws.deleteStudentFromDBSecurity2(studId);
+    }
+
 
 
 }

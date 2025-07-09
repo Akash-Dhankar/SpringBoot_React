@@ -27,7 +27,6 @@ public class StudentService {
         return "This is deleteMapping Service";
     }
 
-    // List of Students instead of Employees
     List<StudentModel> students = new ArrayList<>(
             Arrays.asList(
                     new StudentModel(1, "Rahul", "Computer Science"),
@@ -116,6 +115,70 @@ public class StudentService {
     public StudentModel deleteStudentFromDBById(int studentId)
     {
         studRepo.deleteById(studentId);
+        System.out.println("Student detail deleted successfully");
+        return null;
+    }
+
+    //-----------------------------------------SECURITY REQUEST-MATCHER RBAC-----------------------------------------
+
+    public List<StudentModel> getAllStudentsSecurity()
+    {
+        return studRepo.findAll();
+    }
+
+    public StudentModel getStudentFromDBSecurity(int studId)
+    {
+        return studRepo.findById(studId).orElse(new StudentModel());
+    }
+
+    public String postStudentToDBSecurity(StudentModel newStudent)
+    {
+        studRepo.save(newStudent);
+        return "Student added successfully";
+    }
+
+    public StudentModel putStudentToDBSecurity(int studId , StudentModel updatedStudent)
+    {
+        studRepo.save(updatedStudent);
+        System.out.println("Student detail updated successfully");
+        return updatedStudent;
+    }
+
+    public StudentModel deleteStudentFromDBSecurity(int studId)
+    {
+        studRepo.deleteById(studId);
+        System.out.println("Student detail deleted successfully");
+        return null;
+    }
+
+ //-----------------------------------------SECURITY METHOD LEVEL---------------------------------------
+
+    public List<StudentModel> getAllStudentsSecurity2()
+    {
+        return studRepo.findAll();
+    }
+
+    public StudentModel getStudentFromDBSecurity2(int studId)
+    {
+        return studRepo.findById(studId).orElse(new StudentModel());
+    }
+
+    public String postStudentToDBSecurity2(StudentModel newStudent)
+    {
+        studRepo.save(newStudent);
+        return "Student added successfully";
+    }
+
+    public StudentModel putStudentToDBSecurity2(int studId , StudentModel updatedStudent)
+    {
+        studRepo.save(updatedStudent);
+        System.out.println("Student detail updated successfully");
+        return updatedStudent;
+    }
+
+    public StudentModel deleteStudentFromDBSecurity2(int studId)
+    {
+        studRepo.deleteById(studId);
         System.out.println("Student detail deleted successfully");
         return null;
     }
