@@ -84,30 +84,29 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SpringStudentConfiguration {
 
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.
-                csrf((CsrfConfigurer<HttpSecurity>csrf)->csrf.disable())
-                .authorizeHttpRequests(auth->{
-//                        auth.requestMatchers(HttpMethod.POST,"/studentRBAC").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.PUT,"/studentRBAC").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.DELETE,"/studentRBAC").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.GET,"/**").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.GET,"/studentRBAC").hasAnyRole("ADMIN","USER");
+                csrf((CsrfConfigurer<HttpSecurity> csrf) -> csrf.disable())
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers(HttpMethod.POST, "/studentRBAC").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.PUT, "/studentRBAC").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.DELETE, "/studentRBAC").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.GET, "/**").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.GET, "/studentRBAC").hasAnyRole("ADMIN", "USER");
                     auth.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
     @Bean
-    InMemoryUserDetailsManager userDetails(){
+    InMemoryUserDetailsManager userDetails() {
         UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("admin")).roles("ADMIN").build();
         UserDetails prac = User.builder().username("prac").password(passwordEncoder().encode("prac123")).roles("USER").build();
-        return new InMemoryUserDetailsManager(admin,prac);
+        return new InMemoryUserDetailsManager(admin, prac);
     }
 }
