@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import com.example.demo.services.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -77,35 +79,37 @@ import org.springframework.security.web.SecurityFilterChain;
 
     // -----------------------------------SECURITY METHOD LEVEL TYPE-----------------------------------
 
-    @Configuration
-    @EnableMethodSecurity
-    public class SpringConfiguration {
+@Configuration
+@EnableMethodSecurity
+public class SpringConfiguration {
 
-        @Bean
-        public PasswordEncoder passwordEncoder()
-        {
-            return new BCryptPasswordEncoder();
-        }
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-            http.
-                    csrf((CsrfConfigurer<HttpSecurity>csrf)->csrf.disable())
-                    .authorizeHttpRequests(auth->{
-//                        auth.requestMatchers(HttpMethod.POST,"/employeeRBAC").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.PUT,"/employeeRBAC").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.DELETE,"/employeeRBAC").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.GET,"/**").hasRole("ADMIN");
-//                        auth.requestMatchers(HttpMethod.GET,"/employeeRBAC").hasAnyRole("ADMIN","USER");
-                        auth.anyRequest().authenticated();
-                    })
-                    .httpBasic(Customizer.withDefaults());
-            return http.build();
-        }
-        @Bean
-        InMemoryUserDetailsManager userDetails(){
-            UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("admin")).roles("ADMIN").build();
-            UserDetails ad = User.builder().username("ad").password(passwordEncoder().encode("ad123")).roles("USER").build();
-            return new InMemoryUserDetailsManager(admin,ad);
-        }
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/employeeDTO").hasAnyRole("ADMIN", "USER");
+                    auth.anyRequest().authenticated();
+                })
+                .userDetailsService(customUserDetailsService)
+                .httpBasic(Customizer.withDefaults());
+
+        return http.build();
+    }
 }
+//        @Bean
+//        InMemoryUserDetailsManager userDetails(){
+//            UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("admin")).roles("ADMIN").build();
+//            UserDetails ad = User.builder().username("ad").password(passwordEncoder().encode("ad123")).roles("USER").build();
+//            return new InMemoryUserDetailsManager(admin,ad);
+//        }

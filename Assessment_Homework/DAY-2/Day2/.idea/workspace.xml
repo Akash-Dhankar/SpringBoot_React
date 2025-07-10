@@ -4,26 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="261827d7-3323-4045-bf76-5a93141fa84c" name="Changes" comment="day 4s student project update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/PasswordEncode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/RegisterDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Roles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/RegisterDetailsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/services/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/PasswordEncode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/RegisterDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/Roles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/RegisterDetailsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/AuthService.java" afterDir="false" />
+    <list default="true" id="261827d7-3323-4045-bf76-5a93141fa84c" name="Changes" comment="day 6 student project update">
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/EmployeeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/TodoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/Todo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/UserDetailsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/RolesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/TodoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/EmployeeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/TodoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/SpringStudentConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/SpringStudentConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controllers/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/config/SpringConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/config/SpringConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/HelloWorldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/controllers/HelloWorldController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/RegisterDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/models/RegisterDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/RegisterDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/repository/RegisterDetailsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/HelloWorldService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/java/com/example/demo/services/HelloWorldService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Classes/DAY-2/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751912178723</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="day 6 student project update">
+      <option name="closed" value="true" />
+      <created>1752081407396</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1752081407396</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,6 +149,7 @@
     <MESSAGE value="hw commit day 3" />
     <MESSAGE value="a little more update , not homework just practice" />
     <MESSAGE value="day 4s student project update" />
-    <option name="LAST_COMMIT_MESSAGE" value="day 4s student project update" />
+    <MESSAGE value="day 6 student project update" />
+    <option name="LAST_COMMIT_MESSAGE" value="day 6 student project update" />
   </component>
 </project>
