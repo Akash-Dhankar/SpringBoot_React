@@ -46,17 +46,23 @@
 //---------------------------------------------DAY 7 ----------------------------------------------
 package com.example.demo.services;
 
+import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.models.RegisterDetails;
 import com.example.demo.models.Roles;
 import com.example.demo.models.UserDetailsDto;
 import com.example.demo.repository.RegisterDetailsRepository;
+import com.example.demo.repository.RegisterRepository;
 import com.example.demo.repository.RolesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -70,6 +76,15 @@ public class AuthService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RegisterRepository registerRepository;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
 
     public String addNewEmployee(UserDetailsDto register)
     {
@@ -91,16 +106,29 @@ public class AuthService {
         return "Employee Added Successfully";
     }
 
-    public String authenticate(RegisterDetails login)
-    {
-        RegisterDetails user = registerDetailsRepository.findByEmail(login.getEmail());
-        if(user!=null)
-        {
-            if(passwordEncoder.matches(login.getPassword(),user.getPassword()))
-            {
-                return "Login Successful";
-            }
-        }
-        return "Login Not Successful";
+//    public String authenticate(RegisterDetails login)
+//    {
+//        RegisterDetails user = registerDetailsRepository.findByEmail(login.getEmail());
+//        if(user!=null)
+//        {
+//            if(passwordEncoder.matches(login.getPassword(),user.getPassword()))
+//            {
+//                return "Login Successful";
+//            }
+//        }
+//        return "Login Not Successful";
+//    }
+
+    //----------------------------DAY 8 JWT-----------------------------THE ABOVE LINES NOT NEEDED-----------------------
+    //-------ABOVE CODE OF String authenticate IS FOR DAY 7 -------------------------------------------------------------
+    public String authenticate(RegisterDetails login){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
+        return jwtTokenProvider.generateToken(authentication);
+    }
+
+    public Optional<RegisterDetails> getUserByUserName(String username){
+        return registerRepository.findByUserName(username);
+
     }
 }
