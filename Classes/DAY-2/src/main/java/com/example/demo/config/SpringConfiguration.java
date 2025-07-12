@@ -21,6 +21,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 //@Configuration
 //public class SpringConfiguration {
@@ -124,6 +129,41 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 //-------------------------------------------------DAY 8 JWT--------------------------------------------------------
 
+//@Configuration
+//@EnableMethodSecurity
+//public class SpringConfiguration {
+//
+//    @Autowired
+//    CustomUserDetailsService customUserDetailsService;
+//
+//    @Autowired
+//    JwtAuthenticationFilter jwtAuthenticationFilter;
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder()
+//    {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Bean
+//    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+//        http
+//                .csrf(csrf -> csrf.disable())
+//                .authorizeHttpRequests(auth -> {
+//                    auth.requestMatchers("/api/auth/**").permitAll();
+//                    auth.anyRequest().authenticated();
+//                })
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//        return http.build();
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
+//        return configuration.getAuthenticationManager();
+//    }
+
+//-----------------------------------------------------DAY 9 WITH REACT----------------------------------------
+
 @Configuration
 @EnableMethodSecurity
 public class SpringConfiguration {
@@ -143,6 +183,7 @@ public class SpringConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/auth/**").permitAll();
@@ -155,5 +196,18 @@ public class SpringConfiguration {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 }

@@ -96,8 +96,8 @@ public class EmployeeController {
     }
 
 
-    @GetMapping("/employeeJWT/{empId}")
     @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/employeeJWT/{empId}")
     public RegisterDetails getEmployeeByIdJWT(@PathVariable int empId){
         System.out.println();
         return employeeService.getEmployeeByIdJWT(empId);
@@ -108,8 +108,7 @@ public class EmployeeController {
 //    public List<RegisterDetails> getEmployeeByJob(@PathVariable String job){
 //        return employeeService.getEmployeeByJob(job);
 //    }
-
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PostMapping("/employeeJWT")
     public String postMethodJWT(@RequestBody UserDetailsDto employee){
 //        Employee employee = new Employee(5,"Sivagami", "Business");

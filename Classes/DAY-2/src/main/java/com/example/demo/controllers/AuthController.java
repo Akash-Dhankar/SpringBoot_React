@@ -28,6 +28,23 @@ import org.springframework.web.bind.annotation.*;
 
 //-------------------------------------------DAY 7 --------------------------------------------
 
+//@RestController
+//@RequestMapping("/api/auth")
+//public class AuthController {
+//    @Autowired
+//    AuthService authService;
+//    @PostMapping("/register")
+//    public String addNewUser(@RequestBody UserDetailsDto register){
+//        return authService.addNewEmployee(register);
+//    }
+//
+//    @PostMapping("/login")
+//    public String login(@RequestBody RegisterDetails login){
+//        return authService.authenticate(login);
+//    }
+
+//-------------------------------------------DAY 8 JWT-------------------------------------------
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -42,4 +59,21 @@ public class AuthController {
     public String login(@RequestBody RegisterDetails login){
         return authService.authenticate(login);
     }
+
+//--------------------------------------------DAY 9 - WITH REACT-------------------------------------
+
+//@RestController
+//@RequestMapping("/api/auth")
+//public class AuthController {
+//    @Autowired
+//    AuthService authService;
+//    @PostMapping("/register")
+//    public String addNewUser(@RequestBody UserDetailsDto register){
+//        return authService.addNewEmployee(register);
+//    }
+//
+//    @PostMapping("/login")
+//    public String login(@RequestBody UserDetailsDto login){
+//        return authService.authenticate(login);
+//    }
 }

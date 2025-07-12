@@ -131,4 +131,17 @@ public class AuthService {
         return registerRepository.findByUserName(username);
 
     }
+
+    //---------------------------------------------------DAY 9 - WITH REACT-----------------------------------------
+
+//    public String authenticate(UserDetailsDto login){
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
+//        return jwtTokenProvider.generateToken(authentication);
+//    }
+//
+//    public Optional<RegisterDetails> getUserByUserName(String username){
+//        return registerRepository.findByUserName(username);
+//
+//    }
 }
