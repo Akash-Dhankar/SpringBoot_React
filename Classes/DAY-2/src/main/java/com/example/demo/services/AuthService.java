@@ -53,7 +53,6 @@ import com.example.demo.models.UserDetailsDto;
 import com.example.demo.repository.RegisterDetailsRepository;
 import com.example.demo.repository.RegisterRepository;
 import com.example.demo.repository.RolesRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -121,19 +120,6 @@ public class AuthService {
 
     //----------------------------DAY 8 JWT-----------------------------THE ABOVE LINES NOT NEEDED-----------------------
     //-------ABOVE CODE OF String authenticate IS FOR DAY 7 -------------------------------------------------------------
-    public String authenticate(RegisterDetails login){
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
-        return jwtTokenProvider.generateToken(authentication);
-    }
-
-    public Optional<RegisterDetails> getUserByUserName(String username){
-        return registerRepository.findByUserName(username);
-
-    }
-
-    //---------------------------------------------------DAY 9 - WITH REACT-----------------------------------------
-
 //    public String authenticate(UserDetailsDto login){
 //        Authentication authentication = authenticationManager.authenticate(
 //                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
@@ -144,4 +130,17 @@ public class AuthService {
 //        return registerRepository.findByUserName(username);
 //
 //    }
+
+    //---------------------------------------------------DAY 9 - WITH REACT-----------------------------------------
+
+    public String authenticate(RegisterDetails login){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
+        return jwtTokenProvider.generateToken(authentication);
+    }
+
+    public Optional<RegisterDetails> getUserByUserName(String username){
+        return registerRepository.findByUserName(username);
+
+    }
 }
