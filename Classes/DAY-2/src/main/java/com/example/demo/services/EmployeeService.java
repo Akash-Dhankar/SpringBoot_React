@@ -122,5 +122,8 @@ public class EmployeeService {
         return "Employee Added Successfully";
     }
 
-
+//-----------------------------------------------DAY 11 MOCKITO-----------------------------------------
+    public List<RegisterDetails> getMethodMockito() {
+        return registerDetailsRepository.findAll();
+    }
 }

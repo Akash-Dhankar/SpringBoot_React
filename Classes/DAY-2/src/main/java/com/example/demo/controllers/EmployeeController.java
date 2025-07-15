@@ -127,5 +127,10 @@ public class EmployeeController {
         return employeeService.deleteEmployeeByIdJWT(empID);
     }
 
+//----------------------------------------------DAY 11 MOCKITO-----------------------------------------------
 
+    @GetMapping("/employeeMockito")
+    public List<RegisterDetails> getMethodMockito() {
+        return employeeService.getMethodMockito();
+    }
 }
