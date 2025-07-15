@@ -82,26 +82,26 @@ public class EmployeeController {
 
     //---------------------------------------------DAY 8 JWT TOKEN---------------------------------------
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @GetMapping("/")
-    public String route(){
-        return "Welcome to SpringBoot Security";
-    }
-
-
-    @GetMapping("/employeeJWT")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    public List<RegisterDetails> getMethod(){
-        return employeeService.getMethodJWT();
-    }
-
-
-    @PreAuthorize("hasAnyRole('USER')")
-    @GetMapping("/employeeJWT/{empId}")
-    public RegisterDetails getEmployeeByIdJWT(@PathVariable int empId){
-        System.out.println();
-        return employeeService.getEmployeeByIdJWT(empId);
-    }
+//    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+//    @GetMapping("/")
+//    public String route(){
+//        return "Welcome to SpringBoot Security";
+//    }
+//
+//
+//    @GetMapping("/employeeJWT")
+//    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+//    public List<RegisterDetails> getMethod(){
+//        return employeeService.getMethodJWT();
+//    }
+//
+//
+//    @PreAuthorize("hasAnyRole('USER')")
+//    @GetMapping("/employeeJWT/{empId}")
+//    public RegisterDetails getEmployeeByIdJWT(@PathVariable int empId){
+//        System.out.println();
+//        return employeeService.getEmployeeByIdJWT(empId);
+//    }
 
 //    @PreAuthorize("hasAnyRole('ADMIN','USER')")
 //    @GetMapping("/employee/job/{job}")
@@ -109,28 +109,52 @@ public class EmployeeController {
 //        return employeeService.getEmployeeByJob(job);
 //    }
     
-    @PostMapping("/employeeJWT")
-    public String postMethodJWT(@RequestBody UserDetailsDto employee){
-//        Employee employee = new Employee(5,"Sivagami", "Business");
-        return employeeService.addNewEmployeeJWT(employee);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/employeeJWT/{empId}")
-    public String putMethodJWT(@PathVariable int empId){
-        return employeeService.updateEmployeeJWT(empId);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/employeeJWT/{empID}")
-    public String deleteMethodJWT(@PathVariable int empID){
-        return employeeService.deleteEmployeeByIdJWT(empID);
-    }
+//    @PostMapping("/employeeJWT")
+//    public String postMethodJWT(@RequestBody UserDetailsDto employee){
+////        Employee employee = new Employee(5,"Sivagami", "Business");
+//        return employeeService.addNewEmployeeJWT(employee);
+//    }
+//
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @PutMapping("/employeeJWT/{empId}")
+//    public String putMethodJWT(@PathVariable int empId){
+//        return employeeService.updateEmployeeJWT(empId);
+//    }
+//
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @DeleteMapping("/employeeJWT/{empID}")
+//    public String deleteMethodJWT(@PathVariable int empID){
+//        return employeeService.deleteEmployeeByIdJWT(empID);
+//    }
 
 //----------------------------------------------DAY 11 MOCKITO-----------------------------------------------
+
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+        @GetMapping("/")
+        public String route(){
+            return "Welcome to SpringBoot Security";
+        }
 
     @GetMapping("/employeeMockito")
     public List<RegisterDetails> getMethodMockito() {
         return employeeService.getMethodMockito();
     }
-}
+
+    //-----------------------------------------TASK3 TESTING-------------------------------------------
+
+
+        @PostMapping("/employeeMockito")
+        public RegisterDetails addEmployee(@RequestBody RegisterDetails emp) {
+            return employeeService.saveEmployeeMockito(emp);
+        }
+
+        @PutMapping("/employeeMockito/{id}")
+        public RegisterDetails updateEmployee(@PathVariable int id, @RequestBody RegisterDetails emp) {
+            return employeeService.updateEmployeeMockito(id, emp);
+        }
+
+        @DeleteMapping("/employeeMockito/{id}")
+        public void deleteEmployee(@PathVariable int id) {
+            employeeService.deleteEmployeeMockito(id);
+        }
+    }

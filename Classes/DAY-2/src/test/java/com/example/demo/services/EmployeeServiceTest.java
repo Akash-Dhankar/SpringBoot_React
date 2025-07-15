@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class EmployeeServiceTest {
@@ -36,4 +37,37 @@ public class EmployeeServiceTest {
         assertEquals(2,result.size());
         System.out.println(result);
     }
+
+    //-------------------------DAY 11 TASK3 TESTING-------------------------------------
+
+    @Test
+    void testSaveEmployee() {
+        RegisterDetails emp = new RegisterDetails();
+        emp.setName("Ajay");
+        when(registerDetailsRepository.save(emp)).thenReturn(emp);
+
+        RegisterDetails result = employeeService.saveEmployeeMockito(emp);
+        assertEquals("Ajay", result.getName());
+    }
+
+    @Test
+    void testUpdateEmployee() {
+        RegisterDetails emp = new RegisterDetails();
+        emp.setEmpId(1);
+        emp.setName("Updated");
+
+        when(registerDetailsRepository.save(emp)).thenReturn(emp);
+
+        RegisterDetails result = employeeService.updateEmployeeMockito(1, emp);
+        assertEquals(1, result.getEmpId());
+        assertEquals("Updated", result.getName());
+    }
+
+    @Test
+    void testDeleteEmployee() {
+        int id = 1;
+        employeeService.deleteEmployeeMockito(id);
+        verify(registerDetailsRepository).deleteById(id);
+    }
+
 }

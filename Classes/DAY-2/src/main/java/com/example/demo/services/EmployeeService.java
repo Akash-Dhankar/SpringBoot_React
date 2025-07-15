@@ -126,4 +126,19 @@ public class EmployeeService {
     public List<RegisterDetails> getMethodMockito() {
         return registerDetailsRepository.findAll();
     }
+
+    //-----------------------------------DAY 11 TASK3 TESTING-------------------------------------------
+
+    public RegisterDetails saveEmployeeMockito(RegisterDetails emp) {
+        return registerDetailsRepository.save(emp);
+    }
+
+    public RegisterDetails updateEmployeeMockito(int id, RegisterDetails updatedEmp) {
+        updatedEmp.setEmpId(id);
+        return registerDetailsRepository.save(updatedEmp);
+    }
+
+    public void deleteEmployeeMockito(int id) {
+        registerDetailsRepository.deleteById(id);
+    }
 }

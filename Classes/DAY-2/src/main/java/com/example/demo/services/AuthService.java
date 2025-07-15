@@ -47,6 +47,7 @@
 package com.example.demo.services;
 
 import com.example.demo.jwt.JwtTokenProvider;
+import com.example.demo.models.AuthResponse;
 import com.example.demo.models.RegisterDetails;
 import com.example.demo.models.Roles;
 import com.example.demo.models.UserDetailsDto;
@@ -85,8 +86,7 @@ public class AuthService {
     @Autowired
     JwtTokenProvider jwtTokenProvider;
 
-    public String addNewEmployee(UserDetailsDto register)
-    {
+    public String addNewEmployee(UserDetailsDto register) {
         RegisterDetails registerDetails = new RegisterDetails();
         registerDetails.setEmpId(register.getEmpId());
         registerDetails.setName(register.getName());
@@ -94,13 +94,13 @@ public class AuthService {
         registerDetails.setPassword(passwordEncoder.encode(register.getPassword()));
         registerDetails.setUserName(register.getUserName());
         Set<Roles> roles = new HashSet<>();
-        for(String roleName: register.getRoleNames()){
+        for (String roleName : register.getRoleNames()) {
             Roles role = rolesRepository.findByRoleName(roleName)
-                    .orElseThrow(()->new RuntimeException("User not found" + roleName));
+                    .orElseThrow(() -> new RuntimeException("User not found" + roleName));
             roles.add(role);
         }
         registerDetails.setRoles(roles);
-        System.out.println("Registration"+ registerDetails);
+        System.out.println("Registration" + registerDetails);
         registerDetailsRepository.save(registerDetails);
         return "Employee Added Successfully";
     }
@@ -133,14 +133,34 @@ public class AuthService {
 
     //---------------------------------------------------DAY 9 - WITH REACT-----------------------------------------
 
-    public String authenticate(RegisterDetails login){
+//    public String authenticate(RegisterDetails login){
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
+//        return jwtTokenProvider.generateToken(authentication);
+//    }
+//
+//    public Optional<RegisterDetails> getUserByUserName(String username){
+//        return registerRepository.findByUserName(username);
+//
+//    }
+
+    //---------------------------    DAY 11 TASK 2 JWT RETURN TOKEN,ROLES AND USERNAME--------------------------------------
+
+    public AuthResponse authenticate(RegisterDetails login) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(login.getUserName(),login.getPassword()));
-        return jwtTokenProvider.generateToken(authentication);
-    }
+                new UsernamePasswordAuthenticationToken(
+                        login.getUserName(),
+                        login.getPassword()
+                )
+        );
 
-    public Optional<RegisterDetails> getUserByUserName(String username){
-        return registerRepository.findByUserName(username);
+                                                 /* 23IT003 */
 
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        RegisterDetails user = registerRepository.findByUserName(login.getUserName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new AuthResponse(token, user.getUserName(), login.getPassword(), user.getRoles());
     }
 }
