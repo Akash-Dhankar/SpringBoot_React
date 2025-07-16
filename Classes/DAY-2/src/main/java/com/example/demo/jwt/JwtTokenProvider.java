@@ -89,9 +89,8 @@ public class JwtTokenProvider {
     public String generateToken(Authentication authentication){
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 
-        List<String> roles = userPrincipal.getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority) // e.g., ROLE_USER
+        List<String> roles = userPrincipal.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
         return Jwts.builder()
@@ -118,7 +117,6 @@ public class JwtTokenProvider {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
         return claims.get("roles", List.class);
     }
 
