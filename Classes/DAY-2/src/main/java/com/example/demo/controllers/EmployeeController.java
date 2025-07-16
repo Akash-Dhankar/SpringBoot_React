@@ -5,8 +5,10 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.RegisterDetails;
+import com.example.demo.models.Todo;
 import com.example.demo.models.UserDetailsDto;
 import com.example.demo.services.EmployeeService;
+import com.example.demo.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -82,50 +84,50 @@ public class EmployeeController {
 
     //---------------------------------------------DAY 8 JWT TOKEN---------------------------------------
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @GetMapping("/")
-    public String route(){
-        return "Welcome to SpringBoot Security";
-    }
-
-
-    @GetMapping("/employeeJWT")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    public List<RegisterDetails> getMethod(){
-        return employeeService.getMethodJWT();
-    }
-
-
-    @PreAuthorize("hasAnyRole('USER')")
-    @GetMapping("/employeeJWT/{empId}")
-    public RegisterDetails getEmployeeByIdJWT(@PathVariable int empId){
-        System.out.println();
-        return employeeService.getEmployeeByIdJWT(empId);
-    }
+//    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+//    @GetMapping("/")
+//    public String route(){
+//        return "Welcome to SpringBoot Security";
+//    }
+//
+//
+//    @GetMapping("/employeeJWT")
+//    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+//    public List<RegisterDetails> getMethod(){
+//        return employeeService.getMethodJWT();
+//    }
+//
+//
+//    @PreAuthorize("hasAnyRole('USER')")
+//    @GetMapping("/employeeJWT/{empId}")
+//    public RegisterDetails getEmployeeByIdJWT(@PathVariable int empId){
+//        System.out.println();
+//        return employeeService.getEmployeeByIdJWT(empId);
+//    }
 
 //    @PreAuthorize("hasAnyRole('ADMIN','USER')")
 //    @GetMapping("/employee/job/{job}")
 //    public List<RegisterDetails> getEmployeeByJob(@PathVariable String job){
 //        return employeeService.getEmployeeByJob(job);
 //    }
-    
-    @PostMapping("/employeeJWT")
-    public String postMethodJWT(@RequestBody UserDetailsDto employee){
+
+//    @PostMapping("/employeeJWT")
+//    public String postMethodJWT(@RequestBody UserDetailsDto employee){
 //        Employee employee = new Employee(5,"Sivagami", "Business");
-        return employeeService.addNewEmployeeJWT(employee);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/employeeJWT/{empId}")
-    public String putMethodJWT(@PathVariable int empId){
-        return employeeService.updateEmployeeJWT(empId);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/employeeJWT/{empID}")
-    public String deleteMethodJWT(@PathVariable int empID){
-        return employeeService.deleteEmployeeByIdJWT(empID);
-    }
+//        return employeeService.addNewEmployeeJWT(employee);
+//    }
+//
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @PutMapping("/employeeJWT/{empId}")
+//    public String putMethodJWT(@PathVariable int empId){
+//        return employeeService.updateEmployeeJWT(empId);
+//    }
+//
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @DeleteMapping("/employeeJWT/{empID}")
+//    public String deleteMethodJWT(@PathVariable int empID){
+//        return employeeService.deleteEmployeeByIdJWT(empID);
+//    }
 
 //----------------------------------------------DAY 11 MOCKITO-----------------------------------------------
 
@@ -157,4 +159,86 @@ public class EmployeeController {
 //        public void deleteEmployee(@PathVariable int id) {
 //            employeeService.deleteEmployeeMockito(id);
 //        }
+
+
+    //----------------------------------------DAY 12 REACT + SPRINGBOOT COMBINED ---------------------------------------
+
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @GetMapping("/")
+    public String route(){
+        return "Welcome to SpringBoot Security";
     }
+
+
+    @GetMapping("/employeeJWT")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    public List<RegisterDetails> getMethod(){
+        return employeeService.getMethodJWT();
+    }
+
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/employeeJWT/{empId}")
+    public RegisterDetails getEmployeeByIdJWT(@PathVariable int empId){
+        System.out.println();
+        return employeeService.getEmployeeByIdJWT(empId);
+    }
+
+//    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+//    @GetMapping("/employee/job/{job}")
+//    public List<RegisterDetails> getEmployeeByJob(@PathVariable String job){
+//        return employeeService.getEmployeeByJob(job);
+//    }
+
+    @PostMapping("/employeeJWT")
+    public String postMethodJWT(@RequestBody UserDetailsDto employee){
+//        Employee employee = new Employee(5,"Sivagami", "Business");
+        return employeeService.addNewEmployeeJWT(employee);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/employeeJWT/{empId}")
+    public String putMethodJWT(@PathVariable int empId){
+        return employeeService.updateEmployeeJWT(empId);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/employeeJWT/{empID}")
+    public String deleteMethodJWT(@PathVariable int empID){
+        return employeeService.deleteEmployeeByIdJWT(empID);
+    }
+
+    //------------------------TASK3 OF DAY 12 TO CREATE BACKEND ROUTE FOR TODO------------------------------
+
+    @RestController
+    @RequestMapping("/employee/{empId}/todos")
+    public class TodoController {
+
+        @Autowired
+        private TodoService todoService;
+
+        @PreAuthorize("hasRole('ADMIN') or #empId == principal.empId")
+        @GetMapping
+        public List<Todo> getTodosByEmployee(@PathVariable int empId) {
+            return todoService.getTodosByEmployeeId(empId);
+        }
+
+        @PreAuthorize("hasRole('ADMIN') or #empId == principal.empId")
+        @PostMapping
+        public String addTodo(@PathVariable int empId, @RequestBody Todo todo) {
+            return todoService.addTodoToEmployee(empId, todo);
+        }
+
+        @PreAuthorize("hasRole('ADMIN') or @todoService.isTodoOwnedByUser(#todoId, principal.empId)")
+        @PutMapping("/{todoId}/status")
+        public String updateStatus(@PathVariable int empId, @PathVariable int todoId, @RequestParam String status) {
+            return todoService.updateTodoStatus(todoId, status);
+        }
+
+        @PreAuthorize("hasRole('ADMIN')")
+        @DeleteMapping("/{todoId}")
+        public String deleteTodo(@PathVariable int todoId) {
+            return todoService.deleteTodoById(todoId);
+        }
+    }
+}

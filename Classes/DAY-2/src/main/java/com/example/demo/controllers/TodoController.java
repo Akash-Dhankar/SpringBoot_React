@@ -13,15 +13,17 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-    @GetMapping("/employee/{empId}/todos")
-    public List<Todo> getTodosByEmployee(@PathVariable int empId) {
-        return todoService.getTodosByEmployeeId(empId);
-    }
+    //ALREADY PRESENT IN EMPLOYEECONTROLLER.JAVA , SO COMMENTING THESE
 
-    @PostMapping("/employee/{empId}/todos")
-    public String addTodo(@PathVariable int empId, @RequestBody Todo todo) {
-        return todoService.addTodoToEmployee(empId, todo);
-    }
+//    @GetMapping("/employee/{empId}/todos")
+//    public List<Todo> getTodosByEmployee(@PathVariable int empId) {
+//        return todoService.getTodosByEmployeeId(empId);
+//    }
+//
+//    @PostMapping("/employee/{empId}/todos")
+//    public String addTodo(@PathVariable int empId, @RequestBody Todo todo) {
+//        return todoService.addTodoToEmployee(empId, todo);
+//    }
 
     @PutMapping("/todos/{todoId}/status")
     public String updateStatus(@PathVariable int todoId, @RequestParam String status) {

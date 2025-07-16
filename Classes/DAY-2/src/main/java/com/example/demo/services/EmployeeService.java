@@ -5,15 +5,18 @@ package com.example.demo.services;
 
 import com.example.demo.models.RegisterDetails;
 import com.example.demo.models.Roles;
+import com.example.demo.models.Todo;
 import com.example.demo.models.UserDetailsDto;
 import com.example.demo.repository.RegisterDetailsRepository;
 import com.example.demo.repository.RolesRepository;
+import com.example.demo.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,6 +24,9 @@ public class EmployeeService {
 
     @Autowired
     RegisterDetailsRepository registerDetailsRepository;
+
+    @Autowired
+    TodoRepository todoRepository;
 
 //    public List<RegisterDetails> getMethodDTO() {
 //        return registerDetailsRepository.findAll();
@@ -141,4 +147,12 @@ public class EmployeeService {
 //    public void deleteEmployeeMockito(int id) {
 //        registerDetailsRepository.deleteById(id);
 //    }
+
+
+    public boolean isTodoOwnedByUser(int todoId, int empId) {
+        Optional<Todo> todoOpt = todoRepository.findById(todoId);
+        if(todoOpt.isEmpty()) return false;
+        return todoOpt.get().getEmployee().getEmpId() == empId;
+    }
+
 }
