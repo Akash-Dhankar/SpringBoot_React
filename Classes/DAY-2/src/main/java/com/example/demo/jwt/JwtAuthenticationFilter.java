@@ -51,7 +51,7 @@
 //    }
 //}
 
-//----------------------------------------------DAY 12 SPRINGBOOT + REACT-----------------------------------------------
+//-----------------------------------------------DAY 12 SOME CHANGES IN THIS FILE---------------------------------------
 
 package com.example.demo.jwt;
 
@@ -101,7 +101,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtTokenProvider.validateToken(token)) {
-
                 List<String> roles = jwtTokenProvider.getRolesFromToken(token);
 
                 List<GrantedAuthority> authorities = roles.stream()
