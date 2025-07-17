@@ -219,13 +219,13 @@ public class EmployeeController {
         private TodoService todoService;
 
         @PreAuthorize("hasRole('ADMIN') or #empId == principal.empId")
-        @GetMapping
+        @GetMapping("")
         public List<Todo> getTodosByEmployee(@PathVariable int empId) {
             return todoService.getTodosByEmployeeId(empId);
         }
 
         @PreAuthorize("hasRole('ADMIN') or #empId == principal.empId")
-        @PostMapping
+        @PostMapping("")
         public String addTodo(@PathVariable int empId, @RequestBody Todo todo) {
             return todoService.addTodoToEmployee(empId, todo);
         }
