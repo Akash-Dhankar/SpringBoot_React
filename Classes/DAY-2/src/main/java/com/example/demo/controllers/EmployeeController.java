@@ -196,11 +196,12 @@ public class EmployeeController {
         return employeeService.addNewEmployeeJWT(employee);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN','USER')")
     @PutMapping("/employeeJWT/{empId}")
-    public String putMethodJWT(@PathVariable int empId){
-        return employeeService.updateEmployeeJWT(empId);
+    public String putMethodJWT(@PathVariable int empId, @RequestBody UserDetailsDto updatedEmployee){
+        return employeeService.updateEmployeeJWT(empId, updatedEmployee);
     }
+
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/employeeJWT/{empID}")

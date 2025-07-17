@@ -97,7 +97,7 @@ public class EmployeeService {
 //        return registerDetailsRepository.findByRole();
 //    }
 
-    public String updateEmployeeJWT(int empId) {
+    public String updateEmployeeJWT(int empId, UserDetailsDto updatedEmployee) {
         RegisterDetails user = registerDetailsRepository.findById(empId)
                 .orElseThrow(()->new RuntimeException("No Such User Present"));
         registerDetailsRepository.save(user);
