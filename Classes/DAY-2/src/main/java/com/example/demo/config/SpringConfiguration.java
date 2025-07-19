@@ -200,7 +200,7 @@ public class SpringConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173", "https://springboot-classes.onrender.com","https://ems-latest.onrender.com"));
+        config.setAllowedOrigins(List.of("http://localhost:5173", "https://springboot-classes.onrender.com","https://ems-latest.onrender.com","https://ems-latest-1.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

@@ -14,4 +14,5 @@ public class AuthResponse {
     private String username;
     private String password;
     private Set<Roles> roles;
+    private int empId;
 }

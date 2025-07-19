@@ -60,9 +60,14 @@
 //-----------------------------------------------DAY 12 CHANGES IN THIS FILE-------------------------------------------
 package com.example.demo.jwt;
 
+import com.example.demo.models.Employee;
+import com.example.demo.models.RegisterDetails;
+import com.example.demo.repository.RegisterDetailsRepository;
+import com.example.demo.repository.TodoRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -82,12 +87,21 @@ public class JwtTokenProvider {
     @Value("${app.jwt-expiration-milliseconds}")
     private long jwtExpirationMilliseconds;
 
+    @Autowired
+    RegisterDetailsRepository registerDetailsRepository;
+
     private Key secretKey(){
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
     public String generateToken(Authentication authentication){
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
+
+        RegisterDetails emp = registerDetailsRepository.findByEmail(userPrincipal.getUsername());
+        if (emp == null) {
+            throw new RuntimeException("User not found");
+        }
+        Integer empId = emp.getEmpId();
 
         List<String> roles = userPrincipal.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -96,6 +110,7 @@ public class JwtTokenProvider {
         return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
                 .claim("roles", roles)
+                .claim("empId", empId)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMilliseconds))
                 .signWith(secretKey(), SignatureAlgorithm.HS256)
@@ -119,6 +134,16 @@ public class JwtTokenProvider {
                 .getBody();
         return claims.get("roles", List.class);
     }
+
+    public Integer getEmpIdFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(secretKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.get("empId", Integer.class);
+    }
+
 
     public Boolean validateToken(String token){
         try {

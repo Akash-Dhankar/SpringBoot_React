@@ -161,6 +161,6 @@ public class AuthService {
         RegisterDetails user = registerRepository.findByUserName(login.getUserName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return new AuthResponse(token, user.getUserName(), login.getPassword(), user.getRoles());
+        return new AuthResponse(token, user.getUserName(), login.getPassword(), user.getRoles(), user.getEmpId());
     }
 }
