@@ -97,7 +97,8 @@ public class JwtTokenProvider {
     public String generateToken(Authentication authentication){
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 
-        RegisterDetails emp = registerDetailsRepository.findByEmail(userPrincipal.getUsername());
+        RegisterDetails emp = registerDetailsRepository.findByUserName(userPrincipal.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
         if (emp == null) {
             throw new RuntimeException("User not found");
         }
